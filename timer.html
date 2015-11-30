@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <script src="timer.js"></script>
+</head>
+<body>
+    <div id = "timer">
+        <span>{d}</span>
+        <span>{h}</span>
+        <span>{m}</span>
+        <span>{s}</span>
+    </div>
+</body>
+<script>
+    window.onload = function(){
+        var timer = document.getElementById("timer");
+        var t = time(timer,1448625000014,function(){
+            alert("倒计时结束!");
+        });
+    }
+</script>
+</html>
