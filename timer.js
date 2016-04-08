@@ -1,6 +1,6 @@
 var time = function(el,timer,fn){
     var _option = {d:0,h:0,m:0,s:0},interval,innerhtml = el.innerHTML;
-    if(typeof timer == 'number'){
+    if(!isNaN(timer)){
         if(timer.toString().length<13){
             secondToTime();
         }else{
@@ -19,11 +19,12 @@ var time = function(el,timer,fn){
     }
     function stringToTime(){
         //字符串转换成时间 d-h:m:s
-        _option.d = timer.split("-")[0];
+        _option.d = parseInt(timer.split("-")[0]);
         var tmp = timer.split("-")[1].split(":");
-        _option.h = tmp[0];
-        _option.m = tmp[1];
-        _option.s = tmp[2];
+        _option.h = parseInt(tmp[0]);
+        _option.m = parseInt(tmp[1]);
+        _option.s = parseInt(tmp[2]);
+        timer = ((_option.d * 24 + _option.h)*60 + _option.m) * 60 + _option.s;
     }
     function stampToTime(){
         var now = new Date().getTime();
