@@ -18,13 +18,22 @@ var time = function(el,timer,fn){
         _option.h = parseInt(timer/3600) - _option.d * 24;
     }
     function stringToTime(){
-        //字符串转换成时间 d-h:m:s
-        _option.d = parseInt(timer.split("-")[0]);
-        var tmp = timer.split("-")[1].split(":");
-        _option.h = parseInt(tmp[0]);
-        _option.m = parseInt(tmp[1]);
-        _option.s = parseInt(tmp[2]);
-        timer = ((_option.d * 24 + _option.h)*60 + _option.m) * 60 + _option.s;
+        if(timer.split("-").length>2){
+            //字符串转换成时间 y-m-d-h-m-s-ms
+            var tmp = timer.split("-");
+            var now = new Date();
+            var future = new Date(tmp[0],tmp[1]-1,tmp[2],tmp[3],tmp[4],tmp[5]);
+            timer = Math.ceil((future - now)/1000);
+            secondToTime();
+        }else{
+            //字符串转换成时间 d-h:m:s
+            _option.d = parseInt(timer.split("-")[0]);
+            var tmp = timer.split("-")[1].split(":");
+            _option.h = parseInt(tmp[0]);
+            _option.m = parseInt(tmp[1]);
+            _option.s = parseInt(tmp[2]);
+            timer = ((_option.d * 24 + _option.h)*60 + _option.m) * 60 + _option.s;
+        }
     }
     function stampToTime(){
         var now = new Date().getTime();
