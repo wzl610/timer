@@ -47,7 +47,6 @@ var time = function(el,timer,fn){
     //重置倒计时
     function reset(){
         repaint(_option,innerhtml);
-        timeBegin();
     }
     function timeBegin(){
         //开始倒计时
@@ -77,5 +76,8 @@ var time = function(el,timer,fn){
     function format(s){
         return s >= 10 ? s :"0"+s;
     }
-    reset();
+    return{
+        reset : reset,
+        timeBegin : timeBegin
+    }
 }
