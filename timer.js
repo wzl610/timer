@@ -52,6 +52,9 @@ var time = function(el,timer,fn){
         //开始倒计时
         interval = setInterval(operator,1000);
     }
+    function timePause(){
+        clearInterval(interval);
+    }
     function operator(){
         //倒计时函数
         subtraction();
@@ -78,6 +81,7 @@ var time = function(el,timer,fn){
     }
     return{
         reset : reset,
-        timeBegin : timeBegin
+        timeBegin : timeBegin,
+        timePause : timePause
     }
 }
