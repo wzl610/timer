@@ -1,14 +1,16 @@
-var time = function(el,timer,fn){
-    var _option = {d:0,h:0,m:0,s:0},interval,innerhtml = el.innerHTML;
-    if(!isNaN(timer)){
-        if(timer.toString().length<13){
-            secondToTime();
+var time = function(el,t,fn){
+    var timer = t,_option = {d:0,h:0,m:0,s:0},interval,innerhtml = el.innerHTML;
+    function init(){
+        if(!isNaN(timer)){
+            if(timer.toString().length<13){
+                secondToTime();
+            }else{
+                //时间戳
+                stampToTime();
+            }
         }else{
-            //时间戳
-            stampToTime();
+            stringToTime();
         }
-    }else{
-        stringToTime();
     }
     function secondToTime(){
         //毫秒数转成时间
@@ -46,6 +48,8 @@ var time = function(el,timer,fn){
     }
     //重置倒计时
     function reset(){
+        timer = t;
+        init();
         repaint(_option,innerhtml);
     }
     function timeBegin(){
