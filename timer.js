@@ -83,6 +83,7 @@ var time = function(el,t,fn){
     function format(s){
         return s >= 10 ? s :"0"+s;
     }
+    init();
     return{
         reset : reset,
         timeBegin : timeBegin,
